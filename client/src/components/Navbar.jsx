@@ -21,13 +21,13 @@ const navigation = [
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  //   const cartItems = useSelector((state) => state.cart.cartItems);
+  // const cartItems = useSelector((state) => state.cart.cartItems);
 
-  //   const { currentUser, logout } = useAuth();
-
-  const handleLogOut = () => {
-    logout();
-  };
+  // const { currentUser, logout } = useAuth();
+  const currentUser = true;
+  // const handleLogOut = () => {
+  //   logout();
+  // };
 
   const token = localStorage.getItem("token");
 
@@ -57,20 +57,20 @@ const Navbar = () => {
           <div>
             {currentUser ? (
               <>
-                <button>
+                <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                   <img
                     src={avatarImg}
                     alt=""
-                    // className={`size-7 rounded-full ${
-                    //   currentUser ? "ring-2 ring-blue-500" : ""
-                    // }`}
+                    className={`size-7 rounded-full ${
+                      currentUser ? "ring-2 ring-blue-500" : ""
+                    }`}
                   />
                 </button>
                 {/* show dropdowns */}
-                {/* {isDropdownOpen && ( */}
+                {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
                     <ul className="py-2">
-                      {/* {navigation.map((item) => ( */}
+                      {navigation.map((item) => (
                         <li
                           key={item.name}
                           onClick={() => setIsDropdownOpen(false)}
@@ -82,10 +82,10 @@ const Navbar = () => {
                             {item.name}
                           </Link>
                         </li>
-                     {/* ))} */}
+                      ))}
                       <li>
                         <button
-                        //   onClick={handleLogOut}
+                          // onClick={handleLogOut}
                           className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                         >
                           Logout
@@ -93,7 +93,7 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </div>
-                {/* )} */}
+                )}
               </>
             ) : token ? (
               <Link to="/dashboard" className="border-b-2 border-primary">
@@ -116,13 +116,13 @@ const Navbar = () => {
             className="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-sm"
           >
             <HiOutlineShoppingCart className="" />
-            {cartItems.length > 0 ? (
-              <span className="text-sm font-semibold sm:ml-1">
-                {cartItems.length}
-              </span>
-            ) : (
-              <span className="text-sm font-semibold sm:ml-1">0</span>
-            )}
+            {/* {cartItems.length > 0 ? ( */}
+            <span className="text-sm font-semibold sm:ml-1">
+              {/* {cartItems.length} */}
+            </span>
+            {/* ) : ( */}
+            <span className="text-sm font-semibold sm:ml-1">0</span>
+            {/* )} */}
           </Link>
         </div>
       </nav>
